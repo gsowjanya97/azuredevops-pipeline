@@ -1,0 +1,16 @@
+trigger:
+ - main
+stages:
+    - stage: validate
+      jobs:
+        - template: ./validate.yml
+    - stage: deploy
+      jobs:
+        - deployment: 
+          displayName: Deployment
+          strategy:
+            runOnce:
+              deploy:
+                steps:
+                  - template: ./deploy.yml
+  
